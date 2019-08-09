@@ -1,6 +1,5 @@
 # Crawling Interface
 
-#from abc import *
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 
