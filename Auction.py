@@ -4,7 +4,7 @@ from Crawling import Crawling
 from Product_Info import Product_Info
 
 
-class Auction(Crawling) :
+class Auction(Crawling):
     def __init__(self, url):
         super().__init__(url)
 
@@ -22,17 +22,11 @@ class Auction(Crawling) :
         items = table.find_all(class_="section--itemcard")
         for item in items :
             link = item.find("a").attrs['href']
-            a = item.find("a")
-            print(item)
-
-            #if image != None:
-             #   print(image.attrs['src'])
-
             title = item.find(class_="text--title").getText()
             price = item.find(class_="text--price_seller").getText()
-           # print(image)
-            #print("제품명 : " + title + " 가격 : " + price)
-            #print(" 링크 : " + link)
+            print("제품명 : " + title + " 가격 : " + price)
+            print(" 링크 : " + link)
+        #image tag can't lead because they use lazyload
 
     def printChanceItems(self):
         table = self.soup.find(class_="component component--chance_shopping")
@@ -48,5 +42,4 @@ class Auction(Crawling) :
              print("image : "+image + " 링크 : "+link)
 
 ac = Auction("http://browse.auction.co.kr/search?keyword=%EB%A9%B4%EB%8F%84%EA%B8%B0&itemno=&nickname=&frm=hometab&dom=auction&isSuggestion=No&retry=&Fwk=%EB%A9%B4%EB%8F%84%EA%B8%B0&acode=SRP_SU_0100&arraycategory=&encKeyword=%EB%A9%B4%EB%8F%84%EA%B8%B0")
-ac.printChanceItems()
-ac.printAllItems()
+print(ac.soup)
