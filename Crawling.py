@@ -16,7 +16,7 @@ class Crawling() :
         self.option.add_argument('headless')
         self.option.add_argument('window-size=1920x1080')
         self.option.add_argument("disable-gpu")
-        self.driver = webdriver.chrome('./chromedriver', chrome_options=self.option)
+        self.driver = webdriver.Chrome('./chromedriver', chrome_options=self.option)
         self.driver.get(url)
         self.html = self.driver.page_source
         self.soup = BeautifulSoup(self.html, 'html.parser')
