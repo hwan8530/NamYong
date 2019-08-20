@@ -11,7 +11,7 @@ class Crawling() :
     option = ""
     driver = ""
 
-    def __init__(self, url):
+    def __init__(self):
         self.option = webdriver.ChromeOptions()
         self.option.add_argument('headless')
         self.option.add_argument('window-size=1920x1080')
