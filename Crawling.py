@@ -12,11 +12,23 @@ class Crawling() :
     driver = ""
 
     def __init__(self, url):
+        #self.option = webdriver.ChromeOptions()
+        #self.option.add_argument('headless')
+        #self.option.add_argument('window-size=1920x1080')
+        #self.option.add_argument("disable-gpu")
+        #self.driver = webdriver.Chrome('./chromedriver', chrome_options=self.option)
+        options = Options()
+        options.add_argument('--start-fullscreen')
+        self.driver = webdriver.Chrome(executable_path='./chromedriver', chrome_options=options)
+        self.driver.get(url)
+
+
         self.option = webdriver.ChromeOptions()
         self.option.add_argument('headless')
         self.option.add_argument('window-size=1920x1080')
         self.option.add_argument("disable-gpu")
         self.driver = webdriver.Chrome('./chromedriver', chrome_options=self.option)
+
 
     def waitForLoad(self):
             self.driver.implicitly_wait(3)
