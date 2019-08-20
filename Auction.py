@@ -24,6 +24,7 @@ class Auction(Crawling):
             self.images.append(element.get_attribute("src"))
 
     def setUrl(self, url):
+        self.pageNum = 1
         self.driver.get(url)
         self.getHtml()
         self.parseSoup()
