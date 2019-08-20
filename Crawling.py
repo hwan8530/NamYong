@@ -17,10 +17,6 @@ class Crawling() :
         self.option.add_argument('window-size=1920x1080')
         self.option.add_argument("disable-gpu")
         self.driver = webdriver.Chrome('./chromedriver', chrome_options=self.option)
-        #options = Options()
-        #self.driver = webdriver.Chrome(executable_path='./chromedriver', chrome_options=options)
-        #self.driver.get(url)
-        #options.add_argument('--start-fullscreen')
 
     def waitForLoad(self):
             self.driver.implicitly_wait(3)
