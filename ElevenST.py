@@ -1,21 +1,25 @@
-from Crawling import *
+from selenium import webdriver
+from bs4 import BeautifulSoup
+from Crawling import Crawling
 
-class ElevenST(Crawling):
+
+class elevenSt(Crawling):
     def __init__(self, url):
-        super().__init__(url)
-        self.getHtml()
-        self.parseSoup()
+       super().__init__(url)
 
-    def item_info(self):
-        all_item = self.driver.find_elements_by_class_name('total_listitem')
+    def printRecommendedItems(self):
+        table = self.soup.find("ul", class_="cfix")
+        items = table.find_all(class_="box_pd")
+        for item in items :
+            #a = item.find("a")
+            link = item.find("a").attrs['href']
+            title = item.find("p").getText()
+            price = item.find(class_="sale_price").getText()
+            img = self.driver.find_element_by_class_name('lazy')
 
-        # self.driver.
-        for item in all_item:
-            print(item.find_element_by_class_name('info_tit').text) #제품명
-            print(item.find_element_by_class_name('sale_price').text) #가격
-            print(((item.find_element_by_class_name('info_tit')).find_element_by_tag_name('a')).get_attribute('href')) #상품링크
-            self.waitForLoad()
-            print((item.find_element_by_class_name('lazy')).get_attribute('src'))
+            print(title+" "+price)
+            print(img+" "+link)
 
-test = ElevenST('http://search.11st.co.kr/Search.tmall?kwd=%25EB%25A9%25B4%25EB%258F%2584%25EA%25B8%25B0')
-test.item_info()
+
+test = elevenSt("http://search.11st.co.kr/Search.tmall?kwd=%25EB%25A9%25B4%25EB%258F%2584%25EA%25B8%25B0")
+test.printRecommendedItems()
